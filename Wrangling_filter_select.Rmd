@@ -63,7 +63,10 @@ This one is probably the most useful verb for data wrangling. You can see from t
 ```{r}
 # Pay attention to the usage of the pipe
 movies %>%               # start with the full dataset, and then
-  filter(year >= 1965)   # give me only movies where the year is greater than or equal to 1965
+  filter(year >= 1965)%>%   # give me only movies where the year is greater than or equal to 1965
+filter(length > 60)%>%
+  filter(votes>500, rating<=9)
+filter(rating = "PG-13")
 
 # Some simple practice and review for using filters
 
@@ -202,13 +205,18 @@ See if you can answer these questions:
 1. How many movies were released in 1995?
 
 ```{r}
+movies %>%
+  filter (year == 1995)
 
 ```
 
 2. Which Comedies with an MPAA rating, over 120 minutes have a rating above 8?
 
 ```{r}
-
+movies %>%
+  filter(comedy == 1) %>%
+  filter(rating >=1) %>%
+  filter(length > 120)
 ```
 
 3. Create a subset of only Harry Potter movies with the title, rating, budget, and votes. Which movies are included in this data? Which is highest rated? Which has the most votes on imdb.com?
