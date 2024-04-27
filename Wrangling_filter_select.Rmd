@@ -1,7 +1,7 @@
 ---
 title: "Data Wrangling - Part I"
 subtitle: "StatPREP R Workshops"
-author: "Your Name"
+author: "Alfredo Acevedo"
 output: html_document
 ---
 
@@ -63,10 +63,7 @@ This one is probably the most useful verb for data wrangling. You can see from t
 ```{r}
 # Pay attention to the usage of the pipe
 movies %>%               # start with the full dataset, and then
-  filter(year >= 1965)%>%   # give me only movies where the year is greater than or equal to 1965
-filter(length > 60)%>%
-  filter(votes>500, rating<=9)
-filter(rating = "PG-13")
+  filter(year >= 1965)   # give me only movies where the year is greater than or equal to 1965
 
 # Some simple practice and review for using filters
 
@@ -242,12 +239,15 @@ The following Harry Potter movies include in this data are Harry Potter and the 
 ```{r}
 long_highrated_comedies_animation <- movies %>%
   
-filter(Comedy == 1 , Animation ==1 , votes > 100) %>%
+filter(Comedy == 1 | Animation ==1 , votes > 100) %>%
 select(title, budget, votes) %>%
 arrange(desc(budget))
 
 long_highrated_comedies_animation
 ```
+
+The highest movie budget that is a comedy or a animation is Wild Wild West. Their budget consist of 170,000,000 and had 19078 votes. 
+
 
 5. Is your favorite movie in the dataset? What other questions could you ask or answer using `filter()`, `select()`, and `arrange()`?
 
